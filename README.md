@@ -7,15 +7,16 @@
 <h2>🛠️Add to your project :</h2>
 
 <br>
-<p>1. Add the JitPack repository to your build file</p>
+<p>1. Go to settings.gradle file and add jitpack repository</p>
 
 ```gradle
-allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
 ```
 <br>
 <p>2. Add the dependency</p>
