@@ -22,7 +22,7 @@ allprojects {
 
 ```gradle
 dependencies { 	
-        implementation 'com.github.saifuddin1703:ConnectGo:Tag' 
+        implementation 'com.github.saifuddin1703:ConnectGo:1.0.0' 
 	}
 ```
 <br>
