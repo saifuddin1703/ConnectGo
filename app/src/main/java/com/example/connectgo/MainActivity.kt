@@ -18,17 +18,17 @@ import java.lang.Exception
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val body = JSONObject()
+
+        body.put("username" ,"user22@gmail.com")
+        body.put("password" ,"password")
         ConnectGo.request
-            .setURL("https://newsapi.org/v2/top-headlines")
-            .setMethod("GET")
-            .setParams(params = hashMapOf(
-                Pair("country","in"),
-                Pair("apiKey","c3124cf4103e452abec353460f345087")
-            )
-            )
-            .setHeaders(hashMapOf(Pair(
-                "user-agent","Mozilla/5.0"
-            )))
+            .setURL("https://bookzone-production.up.railway.app/api/auth/signup")
+            .setMethod("POST")
+            .setBody(body)
+//            .setHeaders(hashMapOf(Pair(
+//                "user-agent","Mozilla/5.0"
+//            )))
             .setListeners(listeners = object : JsonRequestListeners{
                 override fun onSuccess(response: JSONObject) {
                     Log.d("TAG",response.toString())

@@ -34,28 +34,25 @@ class RequestTask(private val request : Request) : Runnable {
                 outputStream.write(body)
             }
 
-            Log.d("BEFORE",connection.requestMethod)
 //            connection.query
             connection.connect()
 
-            Log.d("AFTER",connection.requestMethod)
             val responseCode = connection.responseCode
 
-            val isSuccess = responseCode == HttpsURLConnection.HTTP_OK
+            val isSuccess = responseCode in 200..299
             val ips = if (isSuccess) connection.inputStream else connection.errorStream
 
             val scanner = Scanner(ips)
 
             scanner.useDelimiter("\\A")
 
+
             val responseString = if (scanner.hasNext()) scanner.next() else ""
 
-            Log.d("DEBUG",connection.headerFields.toString())
             if (isSuccess) {
                 val response = JSONObject(responseString)
                 request.sendResponse(response, null)
             }else{
-                Log.d("DEBUG",connection.requestMethod)
                 request.sendResponse(null,java.lang.Exception(responseString))
             }
 
